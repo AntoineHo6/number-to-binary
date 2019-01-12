@@ -9,29 +9,34 @@ input.addEventListener("keyup", function(event) {
             console.log('not a number');        // temp
         }
         else{
-            let number = Number(sNumber);
-            let inBinary = '';
-
-            if (isInt(number)){
-                while (number > 0) {
-                    number = number / 2;
-                    if (isFloat(number)){
-                        // A remainder means we remove it and append a 1 to the binary number
-                        number -= 0.5;
-                        inBinary = '1' + inBinary;
-                    }
-                    else {
-                        inBinary = '0' + inBinary;
-                    }
-                }
-                console.log('Num in binary: ' + inBinary);
-            }
-            else {
-                console.log('Need a whole number');
-            }
+            toBinary(sNumber);
         }
     }
 });
+
+function toBinary(sNumber) {
+    document.getElementById('converted').textContent = "Number in binary:";
+    let number = Number(sNumber);
+    let inBinary = '';
+
+    if (isInt(number)){
+        while (number > 0) {
+            number = number / 2;
+            if (isFloat(number)){
+                // A remainder means we remove it and append a 1 to the binary number
+                number -= 0.5;
+                inBinary = '1' + inBinary;
+            }
+            else {
+                inBinary = '0' + inBinary;
+            }
+        }
+        document.getElementById('converted').textContent += " " + inBinary;
+    }
+    else {
+        console.log('Need a whole number');
+    }
+}
 
 function isInt(n){
     return n % 1 === 0;
